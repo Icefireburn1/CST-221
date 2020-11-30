@@ -45,7 +45,7 @@ int produce(){
 }
 
 void consume(int i){
-	//printf("%i, ", i);
+	printf("%i, ", i);
 }
 
 
