@@ -21,11 +21,10 @@ int theProduct;
 // Consumer function
 int get() {
     pthread_mutex_lock(&mutex); // Lock
-    if (count > -1) pthread_cond_wait(&Buffer_Not_Empty, &mutex); // Sleep
     count = count - 1;
+    
     pthread_mutex_unlock(&mutex); // Unlock
     pthread_cond_signal(&Buffer_Not_Full); // wakeup
-
     return count;
 }
 
@@ -35,7 +34,7 @@ void put(int number) {
     if (count == N) pthread_cond_wait(&Buffer_Not_Full, &mutex); // Sleep
     count = count + 1;
     buffer[count] = number;
-    printf("%d",count);
+    //printf("%d",count);
     pthread_mutex_unlock(&mutex); // Unlock
     pthread_cond_signal(&Buffer_Not_Empty); // WakeUp
 }
